@@ -63,7 +63,8 @@ public enum SignUtils implements SignType {
         public boolean verify(String text, String sign, String key, String characterEncoding) {
             return com.egzosn.pay.common.util.sign.encrypt.MD5.verify(text, sign, key, characterEncoding);
         }
-    }, HMACSHA256 {
+    },
+    HMACSHA256 {
         @Override
         public String getName() {
             return "HMAC-SHA256";
