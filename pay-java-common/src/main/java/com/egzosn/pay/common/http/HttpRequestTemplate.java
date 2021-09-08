@@ -123,7 +123,7 @@ public class HttpRequestTemplate {
             try {
                 return sslsf = new SSLConnectionSocketFactory(SSLContext.getDefault());
             } catch (NoSuchAlgorithmException e) {
-                LOG.error(e);
+                e.printStackTrace();
             }
         }
 
@@ -149,9 +149,9 @@ public class HttpRequestTemplate {
 
             return sslsf;
         } catch (IOException e) {
-            LOG.error(e);
+            e.printStackTrace();
         } catch (GeneralSecurityException e) {
-            LOG.error(e);
+            e.printStackTrace();
         }
         return null;
 
@@ -354,6 +354,7 @@ public class HttpRequestTemplate {
         try (CloseableHttpResponse response = getHttpClient().execute(httpRequest)) {
             return httpRequest.handleResponse(response);
         }catch (IOException e){
+            e.printStackTrace();
             throw new PayErrorException(new PayException("IOException", e.getLocalizedMessage()));
         }finally {
             httpRequest.releaseConnection();
