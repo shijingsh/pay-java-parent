@@ -1,6 +1,9 @@
 
 package com.egzosn.pay.common.util.sign.encrypt;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.security.PrivateKey;
@@ -10,7 +13,7 @@ public class RSA2 {
 
 	private static final String SIGN_SHA256RSA_ALGORITHMS = "SHA256WithRSA";
 
-
+	protected static final Log LOG = LogFactory.getLog(RSA2.class);
 
 	public static String sign(String content, String privateKey, String characterEncoding) {
 
@@ -39,6 +42,11 @@ public class RSA2 {
 	* @return 布尔值
 	*/
 	public static boolean verify(String content, String sign, String publicKey, String characterEncoding){
+
+		LOG.debug("content：" + content);
+		LOG.debug("sign：" + sign);
+		LOG.debug("publicKey：" + publicKey);
+		LOG.debug("characterEncoding：" + characterEncoding);
 
 		return RSA.verify(content, sign, publicKey, SIGN_SHA256RSA_ALGORITHMS, characterEncoding );
 	}

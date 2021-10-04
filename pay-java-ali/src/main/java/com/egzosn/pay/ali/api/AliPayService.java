@@ -129,6 +129,8 @@ public class AliPayService extends BasePayService<AliPayConfigStorage> {
      */
     public boolean signVerify(Map<String, Object> params, String sign) {
 
+        LOG.debug("signVerify params：" + JSONObject.toJSONString(params));
+        LOG.debug("signVerify signType：" + payConfigStorage.getSignType());
         if (params instanceof JSONObject) {
             for (Map.Entry<String, Object> entry : params.entrySet()) {
                 if (SIGN.equals(entry.getKey()) || ALIPAY_CERT_SN_FIELD.equals(entry.getKey())) {
