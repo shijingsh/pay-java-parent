@@ -48,6 +48,7 @@ import com.egzosn.pay.common.util.DateUtils;
 import com.egzosn.pay.common.util.Util;
 import com.egzosn.pay.common.util.sign.SignUtils;
 import com.egzosn.pay.common.util.str.StringUtils;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 支付宝支付服务
@@ -57,6 +58,7 @@ import com.egzosn.pay.common.util.str.StringUtils;
  * email egzosn@gmail.com
  * date 2017-2-22 20:09
  */
+@Slf4j
 public class AliPayService extends BasePayService<AliPayConfigStorage> {
 
 
@@ -112,7 +114,7 @@ public class AliPayService extends BasePayService<AliPayConfigStorage> {
     public boolean verify(Map<String, Object> params) {
 
         if (params.get(SIGN) == null) {
-            LOG.debug("支付宝支付异常：params：" + params);
+            log.info("支付宝支付异常：params：" + params);
             return false;
         }
 
@@ -129,8 +131,8 @@ public class AliPayService extends BasePayService<AliPayConfigStorage> {
      */
     public boolean signVerify(Map<String, Object> params, String sign) {
 
-        LOG.debug("signVerify params：" + JSONObject.toJSONString(params));
-        LOG.debug("signVerify signType：" + payConfigStorage.getSignType());
+        log.info("signVerify params：" + JSONObject.toJSONString(params));
+        log.info("signVerify signType：" + payConfigStorage.getSignType());
         if (params instanceof JSONObject) {
             for (Map.Entry<String, Object> entry : params.entrySet()) {
                 if (SIGN.equals(entry.getKey()) || ALIPAY_CERT_SN_FIELD.equals(entry.getKey())) {
@@ -422,7 +424,7 @@ public class AliPayService extends BasePayService<AliPayConfigStorage> {
         JSONObject result = getHttpRequestTemplate().postForObject(getReqUrl() + "?" + UriVariables.getMapToParameters(orderInfo), null, JSONObject.class);
         JSONObject response = result.getJSONObject("alipay_trade_pay_response");
         if (!SUCCESS_CODE.equals(response.getString(CODE))) {
-            LOG.info("收款失败");
+            log.info("收款失败");
         }
         return result;
     }

@@ -1,19 +1,17 @@
 
 package com.egzosn.pay.common.util.sign.encrypt;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
+@Slf4j
 public class RSA2 {
 
 	private static final String SIGN_SHA256RSA_ALGORITHMS = "SHA256WithRSA";
-
-	protected static final Log LOG = LogFactory.getLog(RSA2.class);
 
 	public static String sign(String content, String privateKey, String characterEncoding) {
 
@@ -43,10 +41,11 @@ public class RSA2 {
 	*/
 	public static boolean verify(String content, String sign, String publicKey, String characterEncoding){
 
-		LOG.debug("content：" + content);
-		LOG.debug("sign：" + sign);
-		LOG.debug("publicKey：" + publicKey);
-		LOG.debug("characterEncoding：" + characterEncoding);
+		log.info("\n----------------------------------------------------------\n\t");
+		log.info("content：{}" , content);
+		log.info("sign：" + sign);
+		log.info("publicKey：" + publicKey);
+		log.info("characterEncoding：" + characterEncoding);
 
 		return RSA.verify(content, sign, publicKey, SIGN_SHA256RSA_ALGORITHMS, characterEncoding );
 	}
