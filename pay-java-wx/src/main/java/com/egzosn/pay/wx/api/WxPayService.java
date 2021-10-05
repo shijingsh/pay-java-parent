@@ -16,22 +16,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.zip.GZIPInputStream;
 
-import static com.egzosn.pay.wx.api.WxConst.APPID;
-import static com.egzosn.pay.wx.api.WxConst.CIPHER_ALGORITHM;
-import static com.egzosn.pay.wx.api.WxConst.FAIL;
-import static com.egzosn.pay.wx.api.WxConst.FAILURE;
-import static com.egzosn.pay.wx.api.WxConst.HMACSHA256;
-import static com.egzosn.pay.wx.api.WxConst.HMAC_SHA256;
-import static com.egzosn.pay.wx.api.WxConst.MCH_ID;
-import static com.egzosn.pay.wx.api.WxConst.NONCE_STR;
-import static com.egzosn.pay.wx.api.WxConst.OUT_TRADE_NO;
-import static com.egzosn.pay.wx.api.WxConst.RESULT_CODE;
-import static com.egzosn.pay.wx.api.WxConst.RETURN_CODE;
-import static com.egzosn.pay.wx.api.WxConst.RETURN_MSG_CODE;
-import static com.egzosn.pay.wx.api.WxConst.SANDBOXNEW;
-import static com.egzosn.pay.wx.api.WxConst.SIGN;
-import static com.egzosn.pay.wx.api.WxConst.SUCCESS;
-import static com.egzosn.pay.wx.api.WxConst.URI;
+import static com.egzosn.pay.wx.api.WxConst.*;
 import static com.egzosn.pay.wx.bean.WxTransferType.GETTRANSFERINFO;
 import static com.egzosn.pay.wx.bean.WxTransferType.QUERY_BANK;
 import static com.egzosn.pay.wx.bean.WxTransferType.TRANSFERS;
@@ -248,7 +233,7 @@ public class WxPayService extends BasePayService<WxPayConfigStorage> implements 
         JSONObject result = requestTemplate.postForObject(getReqUrl(order.getTransactionType()), entity, JSONObject.class);
 
         if (!SUCCESS.equals(result.get(RETURN_CODE)) || !SUCCESS.equals(result.get(RESULT_CODE))) {
-            throw new PayErrorException(new WxPayError(result.getString(RESULT_CODE), result.getString(RETURN_MSG_CODE), result.toJSONString()));
+            throw new PayErrorException(new WxPayError(result.getString(RESULT_CODE), result.getString(RETURN_MSG), result.toJSONString()));
         }
         return result;
     }

@@ -27,6 +27,7 @@ public interface WxConst {
     String APPID = "appid";
     String HMAC_SHA256 = "HMAC-SHA256";
     String HMACSHA256 = "HMACSHA256";
+    String RETURN_MSG = "err_code_des";
     String RETURN_MSG_CODE = "return_msg";
     String RESULT_CODE = "result_code";
     String MCH_ID = "mch_id";
