@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>pay-java-parent</artifactId>
-        <groupId>com.egzosn</groupId>
+        <groupId>com.github.shijingsh</groupId>
         <version>2.14.3</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -16,7 +16,7 @@
 
         <!-- pay-java  -->
         <dependency>
-            <groupId>com.egzosn</groupId>
+            <groupId>com.github.shijingsh</groupId>
             <artifactId>pay-java-common</artifactId>
         </dependency>
         <!-- /pay-java  -->
